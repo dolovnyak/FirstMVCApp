@@ -1,0 +1,18 @@
+﻿    <div>
+        <h3>Buy anime waifu</h3>
+        <table>
+            <tr> 
+                <td><p>Name</p></td>
+                <td><p>Price</p></td>
+                <td></td>
+            </tr>
+             @foreach (var b in ViewBag.Products)
+             {
+             <tr>
+                 <td><p>@b.Name</p></td>
+                 <td><p>@b.Price</p></td>
+                 <td><p><a href="/Home/Buy/@b.Id">Buy</a></p></td>
+             </tr>
+             }
+        </table>
+    </div>
