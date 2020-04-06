@@ -8,6 +8,7 @@ using FirstMVCApp.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using FirstMVCApp.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FirstMVCApp.Controllers
 {
@@ -28,14 +29,24 @@ namespace FirstMVCApp.Controllers
         }
         
         [HttpPost]
-        public string Buy(Purchase purchase)
+        public string Buy(PurchaseViewModel purchaseViewModel)
         {
-            purchase.Id = 0;
-            purchase.Date = DateTime.Now;
-            _appDbContext.Purchases.Add(purchase);
-            _appDbContext.SaveChanges();
-            
-            return "Thank you, " + purchase.Person + ", for your purchase!";
+            if (ModelState.IsValid)
+            {
+                var purchase = new Purchase
+                {
+                    Address = purchaseViewModel.Address,
+                    Person = purchaseViewModel.Person,
+                    Date = DateTime.Now,
+                    ProductId = purchaseViewModel.ProductId
+                };
+                _appDbContext.Purchases.Add(purchase);
+                _appDbContext.SaveChanges();
+
+                return "Thank you, " + purchase.Person + ", for your purchase!";
+            }
+
+            return "Name or address doesn't correct.";
         }
 
         public IActionResult Index()
