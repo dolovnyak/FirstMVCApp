@@ -1,5 +1,5 @@
 # FirstMVCApp
-Simple web application created with ASP.NET MVC (It's look bad, but it's work)
+Simple web application created with ASP.NET MVC
 
 ![Image alt](https://github.com/dolovnyak/FirstMVCApp/blob/master/ScreenShots/Screenshot%202020-04-06%20at%2005.43.38.png)
 
